@@ -1,5 +1,10 @@
+.logo {
+  font-size: 30px;
+}
+
 .ramen-form {
   background-color: pink;
+  font-size: 16px;
 }
 
 .sortby {

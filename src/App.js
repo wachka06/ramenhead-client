@@ -11,8 +11,8 @@ class App extends Component {
     searchWord: '',
     searchArea: '',
     selectedRamen: {},
-    sortByRating: '',
-    sortByOpen: '',
+    sortByRating: false,
+    sortByOpen: false,
     sortByDistance: "Bird's-eye View"
   }
 
@@ -62,12 +62,12 @@ class App extends Component {
           return obj.distance <= 322
         })
       }
-      if (this.state.sortByRating === "Highest Rated") {
+      if (this.state.sortByRating) {
          filteredRamenArray = filteredRamenArray.sort(function(obj1, obj2) {
            return obj2.rating - obj1.rating
          })
        }
-       if (this.state.sortByOpen === "isOpen") {
+       if (this.state.sortByOpen) {
           filteredRamenArray = filteredRamenArray.filter(obj => {
             return obj.is_closed === false
           })
@@ -138,12 +138,13 @@ class App extends Component {
   //       )
   // }
 
-  handleRating = (event) => {
-    this.setState({sortByRating: event.target.value})
+  handleRating = (event) => { // if the User can unclick the Rating, use checkbox instead of radiobutton!
+    // console.log("checked:", event.target.checked)
+    this.setState({sortByRating: event.target.checked}) // event.target.checked gives you boolean.
   }
 
   handleOpen = (event) => {
-    this.setState({sortByOpen: event.target.value})
+    this.setState({sortByOpen: event.target.checked})
   }
 
   handleDistance = (event) => {
@@ -155,12 +156,12 @@ class App extends Component {
     console.log("APP", this.state)
     return (
       <div className="App">
-
+        <div className="background">
         <RamenForm
           handleInput={this.handleInput} searchWord={this.state.searchWord} searchArea={this.state.searchArea} handleChange={this.handleChange} handleRating={this.handleRating} sortByRating={this.state.sortByRating} handleOpen={this.handleOpen} sortByOpen={this.state.sortByOpen} handleDistance={this.handleDistance} sortByDistance={this.state.sortByDistance} />
         <RamenList ramens={this.handleRamens()} handleClick={this.handleClick} />
         <DisplayRamen selectedRamen={this.state.selectedRamen} />
-
+      </div>
       </div>
     );
   }

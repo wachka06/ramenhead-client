@@ -1,6 +1,7 @@
 .list-ramen {
   background-color: #f7f2f2;
   position: absolute;
+  width: 45%;
   left: 20px;
   overflow: scroll;
   display: flex;
@@ -11,3 +12,7 @@
 .ramens {
   font-size: 16px;
 }
+
+/* .shop-title {
+  margin-bottom: -10px;
+} */

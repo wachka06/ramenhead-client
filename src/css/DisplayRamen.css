@@ -1,16 +1,15 @@
 .display-ramen {
-  /* background-color: #e2d5d5; */
-  width: 50%;
-  margin: 0 auto;
+  background-color: #f7f2f2;
+  width: 45%;
+  margin-left: 550px;
   text-align: center;
-  /* float: right; */
-  top: 150px;
-  right: 0px;
-  position: absolute; /* position:static doesn't disturb any components, but position: absolute disturb other components based on top, right etc... */
-
-  width: 75vw;
+  top: 100px;
   height: 100vh;
-  display: flex;
+  right: 100px;
+
+  display: inline-block;
+  float: left; /* based on the parent component, position:abusolute change the position
+               /* position:static doesn't disturb any components, but position: absolute disturb other components based on top, right etc... */
   flex-direction: column;
   justify-content: center;
   align-items: center;

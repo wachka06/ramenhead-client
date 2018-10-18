@@ -8,12 +8,13 @@ const RamenForm = (props) => {
   return(
     <Fragment>
       <br />
-        <strong>...Rameniac...</strong>
+        <strong className="logo">...Rameniac...</strong>
+      <br />
       <form className="ramen-form">
         <span>
         <strong>Search for Ramen! </strong>
-        <input name="searchWord" type="text" placeholder="Type of soup ex) pork belly, miso..." onChange={props.handleInput} />
-        <input name="searchArea" type="text" placeholder="Near nerghborhood, city, state, or zip" onChange={props.handleInput}/>
+        <input name="searchWord" type="text" size="40" placeholder="Type of soup ex. pork belly, miso..." onChange={props.handleInput} />
+        <input name="searchArea" type="text" size="40" placeholder="Near nerghborhood, city, state, or zip" onChange={props.handleInput}/>
         <button type="submit" onClick={props.handleChange}>Submit</button>
         </span>
       </form>
@@ -27,11 +28,11 @@ const RamenForm = (props) => {
               <option value="Within 4 blocks">Within 4 blocks</option>
             </select>
             <label>
-              <input type="radio" value="Highest Rated" checked={props.sortByRating === "Highest Rated"} onChange={props.handleRating}/>
+              <input type="checkbox" value="Highest Rated" checked={props.sortByRating} onChange={props.handleRating}/>
               Highest Rated
             </label>
             <label>
-              <input type="radio" value="isOpen" checked={props.sortByOpen === "isOpen"} onChange={props.handleOpen}/>
+              <input type="checkbox" value="isOpen" checked={props.sortByOpen} onChange={props.handleOpen}/>
               Open Now
             </label>
         </div>

@@ -5,10 +5,10 @@ const Ramen = (props) => {
 
   return(
     <tr className="ramens">
-      <td><h4 onClick={() => props.handleClick(props.ramen)}>{props.ramen.name}</h4></td>
+      <td><h4 className="shop-title" onClick={() => props.handleClick(props.ramen)}>{props.ramen.name}</h4></td>
       <td>{props.ramen.rating}</td>
       <td>{props.ramen.price}</td>
-      <td >{props.ramen.location.display_address.join('')}</td>
+      <td>{props.ramen.location.display_address.join('')}</td>
     </tr>
   )
 }

@@ -3,7 +3,10 @@ import {Component, Fragment} from "react" // Fragment is like <div>, but doesn't
 import '../css/DisplayRamen.css';
 
 class DisplayRamen extends Component {
-
+  //
+  // handleSave = (ramenObj) => {
+  //   console.log("hi")
+  // }
   renderRamen = () => {
       if (this.props.selectedRamen) {
         return (
@@ -28,6 +31,12 @@ class DisplayRamen extends Component {
     return (
       <Fragment>
       {this.renderRamen()}
+      {/* <button onClick={() => handleSave(this.props.selectedRamen)}>Save as Favorite</button>
+      <form>
+      <button >Write a Review</button>
+      <form>
+      <button type="submit" onClick={props.handleChange}>Submit</button>
+      </form> */}
       </Fragment>
     );
   }
