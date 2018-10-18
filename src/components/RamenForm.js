@@ -36,7 +36,7 @@ const RamenForm = (props) => {
               Open Now
             </label>
         </div>
-      <br />
+      <br />    
     </Fragment>
   )
 }
