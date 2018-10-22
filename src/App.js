@@ -3,17 +3,54 @@ import './css/App.css';
 import RamenForm from './components/RamenForm'
 import RamenList from './containers/RamenList'
 import DisplayRamen from './components/DisplayRamen'
+import UserProfile from './components/UserProfile'
 
 class App extends Component {
 
   state = {
+    loggedIn: true,
     ramens: [],
     searchWord: '',
     searchArea: '',
     selectedRamen: {},
     sortByRating: false,
     sortByOpen: false,
-    sortByDistance: "Bird's-eye View"
+    sortByDistance: "Bird's-eye View",
+    user: {id: 1, name: "Amirata", email: "amirata@gmail.com"},
+    favorites: []
+  }
+  
+  componentDidMount = () => {
+    console.log("state", this.state.user.id)
+    fetch('http://localhost:3000/' + this.state.user.id + '/get_favorites')
+    .then(res => res.json())
+    .then(faves => {
+      console.log(faves)
+    })
+  }
+
+  handleSave = (ramenObj) => {
+    fetch('http://localhost:3000/add_favorite', { //send request to backendside server !
+      method: 'POST',
+      body: JSON.stringify({restaurant: {...ramenObj}, user_id: 1}),
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    })
+    if(!this.state.favorites.includes(ramenObj)) {
+      this.setState(prevState => {
+        return {
+          favorites: [...prevState.favorites, ramenObj]
+        }
+      })
+    } else {
+      this.setState(prevState => {
+        const filteredArray = prevState.favorites.filter(ramen => ramen !== ramenObj)
+        return {
+          favorites: filteredArray
+        }
+      })
+    }
   }
 
   // componentDidMount(){
@@ -160,7 +197,8 @@ class App extends Component {
         <RamenForm
           handleInput={this.handleInput} searchWord={this.state.searchWord} searchArea={this.state.searchArea} handleChange={this.handleChange} handleRating={this.handleRating} sortByRating={this.state.sortByRating} handleOpen={this.handleOpen} sortByOpen={this.state.sortByOpen} handleDistance={this.handleDistance} sortByDistance={this.state.sortByDistance} />
         <RamenList ramens={this.handleRamens()} handleClick={this.handleClick} />
-        <DisplayRamen selectedRamen={this.state.selectedRamen} />
+        <DisplayRamen selectedRamen={this.state.selectedRamen} user={this.state.user} handleSave={this.handleSave} />
+        <UserProfile />
       </div>
       </div>
     );
