@@ -16,41 +16,43 @@ class App extends Component {
     sortByRating: false,
     sortByOpen: false,
     sortByDistance: "Bird's-eye View",
-    user: {id: 1, name: "Amirata", email: "amirata@gmail.com"},
+    user: {id: 15, name: "Amirata", email: "amirata@gmail.com"},
     favorites: []
   }
-  
-  componentDidMount = () => {
+
+  componentDidMount = () => { //lifecycle
     console.log("state", this.state.user.id)
     fetch('http://localhost:3000/' + this.state.user.id + '/get_favorites')
     .then(res => res.json())
     .then(faves => {
-      console.log(faves)
+      faves.map((restaurantObj) => {
+        if(!this.state.favorites.includes(restaurantObj)) {
+          this.setState(prevState => {
+            return {
+              favorites: [...prevState.favorites, restaurantObj]
+            }
+          })
+        } else {
+          this.setState(prevState => {
+            const filteredArray = prevState.favorites.filter(ramen => ramen !== restaurantObj)
+            return {
+              favorites: filteredArray
+            }
+          })
+        }
+      })
     })
   }
 
   handleSave = (ramenObj) => {
     fetch('http://localhost:3000/add_favorite', { //send request to backendside server !
       method: 'POST',
-      body: JSON.stringify({restaurant: {...ramenObj}, user_id: 1}),
+      body: JSON.stringify({restaurant: {...ramenObj}, user_id: 15}),
       headers:{
         'Content-Type': 'application/json'
       }
     })
-    if(!this.state.favorites.includes(ramenObj)) {
-      this.setState(prevState => {
-        return {
-          favorites: [...prevState.favorites, ramenObj]
-        }
-      })
-    } else {
-      this.setState(prevState => {
-        const filteredArray = prevState.favorites.filter(ramen => ramen !== ramenObj)
-        return {
-          favorites: filteredArray
-        }
-      })
-    }
+
   }
 
   // componentDidMount(){
@@ -190,15 +192,18 @@ class App extends Component {
   }
 
   render() {
-    console.log("APP", this.state)
+    // console.log("APP", this.handleFavorite())
+    // console.log(this.state.favorites)
+    // const favoritesArray = this.handleFavorite()
+    // console.log(favoritesArray)
     return (
       <div className="App">
         <div className="background">
         <RamenForm
           handleInput={this.handleInput} searchWord={this.state.searchWord} searchArea={this.state.searchArea} handleChange={this.handleChange} handleRating={this.handleRating} sortByRating={this.state.sortByRating} handleOpen={this.handleOpen} sortByOpen={this.state.sortByOpen} handleDistance={this.handleDistance} sortByDistance={this.state.sortByDistance} />
         <RamenList ramens={this.handleRamens()} handleClick={this.handleClick} />
-        <DisplayRamen selectedRamen={this.state.selectedRamen} user={this.state.user} handleSave={this.handleSave} />
-        <UserProfile />
+        <DisplayRamen favorites={this.state.favorites} selectedRamen={this.state.selectedRamen} user={this.state.user} handleSave={this.handleSave} />
+        <UserProfile favorites={this.state.favorites} />
       </div>
       </div>
     );

@@ -9,6 +9,15 @@
   justify-content: flex-flex-start;
 }
 
+.ramen {
+  display: inline;
+}
+
+.ramen-title {
+  font-size: 18px;
+  font-style: strong;
+}
+
 .ramens {
   font-size: 16px;
 }
