@@ -12,7 +12,7 @@ class UserProfile extends Component {
   }
 
   render() {
-    console.log("UserProfile!!!!", this.props)
+    // console.log("UserProfile!!!!", this.props)
     // console.log("UserProfile!!!!", this.props.favorites)
     const restaurants = this.props.favorites.map(obj => {
       return obj.restaurant
@@ -25,8 +25,7 @@ class UserProfile extends Component {
     // console.log("name", nameArray)
     return (
       <div>
-        UserProfile Component...
-        <span><strong>Username:</strong>&nbsp;&nbsp;&nbsp;{this.handleUser()}</span>
+        <span>&nbsp;&nbsp;&nbsp;<strong>Username:</strong>&nbsp;&nbsp;&nbsp;{this.handleUser()}</span>
         {restaurants.map((obj) => {
           return <Favorites restaurant={obj}/>
         })}

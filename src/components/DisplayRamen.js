@@ -4,7 +4,8 @@ import '../css/DisplayRamen.css';
 
 class DisplayRamen extends Component {
   state = {
-    rating: '',
+
+    rating: '5',
     contents: '',
     isFavorite: false,
     showForm: false
@@ -15,17 +16,43 @@ class DisplayRamen extends Component {
     // this.setState({rating: })
     if (e.target.name === "type") {
       this.setState({rating: e.target.value})
-      console.log("dsadas", e.target.value)
+      // console.log("dsadas", e.target.value)
     } else if (e.target.name === "message") {
       this.setState({contents: e.target.value})
     }
   }
 
   handleSubmit = (e) => {
+
+    const body = {
+      restaurant: {
+        api_id: this.props.selectedRamen.id,
+        // id: this.props.selectedRamen.,
+        name: this.props.selectedRamen.name,
+        image_url: this.props.selectedRamen.image_url,
+        rating: this.props.selectedRamen.rating,
+        price: this.props.selectedRamen.price,
+        display_phone: this.props.selectedRamen.display_phone,
+        display_address: this.props.selectedRamen.display_address,
+        longitude: this.props.selectedRamen.longitude,
+        latitude: this.props.selectedRamen.latitude,
+      },
+      review: {
+        rating: this.state.rating,
+        contents: this.state.contents,
+        user_id: 15,
+        api_id: this.props.selectedRamen.id
+      }
+    }
     e.preventDefault();
-
-    console.log("HI", e.target.message.value)
-
+    // console.log("HI", e.target.message.value)
+    fetch('http://localhost:3000/reviews', { //send request to backendside server !
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    })
   }
 
   handleFavorite = () => {
@@ -126,7 +153,7 @@ class DisplayRamen extends Component {
                         <button type="submit">Submit</button>
                       </form>
                   </div>
-                  : null
+                  : null // the form will be hidden
               }
          </ul>
        )
@@ -137,7 +164,8 @@ class DisplayRamen extends Component {
   render() {
     // console.log("DisplayRamen", this.props.selectedRamen.coordinates)
     // console.log("props", this.props.selectedRamen)
-     console.log("state", this.state)
+     // console.log("state", this.props.selectedRamen.id)
+     console.log("state", this.props.selectedRamen)
 
     return (
       <Fragment>

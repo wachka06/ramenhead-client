@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import './css/App.css';
-import RamenForm from './components/RamenForm'
-import RamenList from './containers/RamenList'
-import DisplayRamen from './components/DisplayRamen'
+
+import Nav from './components/Nav.js'
+import Homepage from './components/Homepage'
 import UserProfile from './components/UserProfile'
+
+import {
+  BrowserRouter as Router,
+  Route
+} from 'react-router-dom'
 
 class App extends Component {
 
@@ -132,7 +137,7 @@ class App extends Component {
   handleChange = (event) => {
     event.preventDefault();
 
-    fetch(`http://localhost:3000/ramenhead/`, { // if it's 'GET' request, `http://localhost:3000/ramenhead?term=${this.state.searchWord}&location=${this.state.searchArea}&categories=ramen`, and you don't need to put body: JSON.stringify({term:this.state.searchWord, location:this.state.searchArea}), but url will be longer
+    fetch(`http://localhost:3000/rameniac/`, { // if it's 'GET' request, `http://localhost:3000/ramenhead?term=${this.state.searchWord}&location=${this.state.searchArea}&categories=ramen`, and you don't need to put body: JSON.stringify({term:this.state.searchWord, location:this.state.searchArea}), but url will be longer
       method: 'POST',
       body: JSON.stringify({term:this.state.searchWord, location:this.state.searchArea}), //location is required for Yelp API call
       headers:{
@@ -197,15 +202,22 @@ class App extends Component {
     // const favoritesArray = this.handleFavorite()
     // console.log(favoritesArray)
     return (
-      <div className="App">
-        <div className="background">
-        <RamenForm
-          handleInput={this.handleInput} searchWord={this.state.searchWord} searchArea={this.state.searchArea} handleChange={this.handleChange} handleRating={this.handleRating} sortByRating={this.state.sortByRating} handleOpen={this.handleOpen} sortByOpen={this.state.sortByOpen} handleDistance={this.handleDistance} sortByDistance={this.state.sortByDistance} />
-        <RamenList ramens={this.handleRamens()} handleClick={this.handleClick} />
-        <DisplayRamen favorites={this.state.favorites} selectedRamen={this.state.selectedRamen} user={this.state.user} handleSave={this.handleSave} />
-        <UserProfile favorites={this.state.favorites} />
+      <Router>
+       <React.Fragment>
+        <div className="App">
+          <div className="background">
+            <Nav/>
+            <Route exact path="/rameniac" render={
+                  routerProps =>
+                  <Homepage handleInput={this.handleInput} searchWord={this.state.searchWord} searchArea={this.state.searchArea} handleChange={this.handleChange} handleRating={this.handleRating} sortByRating={this.state.sortByRating} handleOpen={this.handleOpen} sortByOpen={this.state.sortByOpen} handleDistance={this.handleDistance} sortByDistance={this.state.sortByDistance} ramens={this.handleRamens()} handleClick={this.handleClick} favorites={this.state.favorites} selectedRamen={this.state.selectedRamen} user={this.state.user} handleSave={this.handleSave}/> }/>
+
+           <Route path="/rameniac/user_details" render={
+                            routerProps => <UserProfile favorites={this.state.favorites} /> }/>
+
+        </div>
       </div>
-      </div>
+    </React.Fragment>
+    </Router>
     );
   }
 }
