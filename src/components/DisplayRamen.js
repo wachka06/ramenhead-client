@@ -1,6 +1,7 @@
 import React from "react"
 import {Component, Fragment} from "react" // Fragment is like <div>, but doesn't break like.
 import '../css/DisplayRamen.css';
+import ReviewList from '../components/ReviewList'
 
 class DisplayRamen extends Component {
   state = {
@@ -9,6 +10,13 @@ class DisplayRamen extends Component {
     contents: '',
     isFavorite: false,
     showForm: false
+  }
+
+  componentDidUpdate = () => {
+    console.log("RAMEN", this.props.selectedRamen);
+    fetch('http://localhost:3000/' + this.props.selectedRamen.id + '/get_reviews')
+    .then(res => res.json())
+    .then(console.log)
   }
 
   handleChange = (e) => {
@@ -33,9 +41,9 @@ class DisplayRamen extends Component {
         rating: this.props.selectedRamen.rating,
         price: this.props.selectedRamen.price,
         display_phone: this.props.selectedRamen.display_phone,
-        display_address: this.props.selectedRamen.display_address,
-        longitude: this.props.selectedRamen.longitude,
-        latitude: this.props.selectedRamen.latitude,
+        display_address: this.props.selectedRamen.location.display_address.join(''),
+        longitude: this.props.selectedRamen.coordinates.longitude,
+        latitude: this.props.selectedRamen.coordinates.latitude,
       },
       review: {
         rating: this.state.rating,

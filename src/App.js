@@ -47,9 +47,17 @@ class App extends Component {
         }
       })
     })
+
+
+    fetch('http://localhost:3000/' + this.state.user.id + '/get_user_reviews')
+    .then(res => res.json())
+    // .then(console.log)
   }
 
+
+
   handleSave = (ramenObj) => {
+    console.log("RAMEN", ramenObj);
     fetch('http://localhost:3000/add_favorite', { //send request to backendside server !
       method: 'POST',
       body: JSON.stringify({restaurant: {...ramenObj}, user_id: 15}),
