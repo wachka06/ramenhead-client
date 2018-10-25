@@ -1,6 +1,7 @@
 import React from "react"
 import {Fragment} from "react" // Fragment is like <div>, but doesn't break like.
 import '../css/RamenForm.css';
+import { Input, Button } from 'semantic-ui-react'
 
 const RamenForm = (props) => {
   // console.log("PizzaForm", props)
@@ -13,9 +14,10 @@ const RamenForm = (props) => {
       <form className="ramen-form">
         <span>
         <strong>Search for Ramen! </strong>
-        <input name="searchWord" type="text" size="40" placeholder="Type of soup ex. pork belly, miso..." onChange={props.handleInput} />
-        <input name="searchArea" type="text" size="40" placeholder="Near nerghborhood, city, state, or zip" onChange={props.handleInput}/>
-        <button type="submit" onClick={props.handleChange}>Submit</button>
+        <br />
+        <Input name="searchWord" type="text" size="40" placeholder="Type of soup ex. pork belly, miso..." onChange={props.handleInput} />
+        <Input icon='search' name="searchArea" type="text" size="40" placeholder="Near nerghborhood, city, state, or zip" onChange={props.handleInput}/>
+        <Button type="submit" onClick={props.handleChange}>Submit</Button>
         </span>
       </form>
       <br />
@@ -36,7 +38,7 @@ const RamenForm = (props) => {
               Open Now
             </label>
         </div>
-      <br />    
+      <br />
     </Fragment>
   )
 }

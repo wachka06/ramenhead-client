@@ -10,7 +10,7 @@ class Homepage extends Component {
     console.log("PROPS", this.props)
 
     return (
-      <div>
+      <div id="ramen-form">
         <RamenForm
           handleInput={this.props.handleInput} searchWord={this.props.searchWord} searchArea={this.props.searchArea} handleChange={this.props.handleChange} handleRating={this.props.handleRating} sortByRating={this.props.sortByRating} handleOpen={this.props.handleOpen} sortByOpen={this.props.sortByOpen} handleDistance={this.props.handleDistance} sortByDistance={this.props.sortByDistance} />
         <RamenList ramens={this.props.ramens} handleClick={this.props.handleClick} />

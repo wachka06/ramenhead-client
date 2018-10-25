@@ -22,6 +22,52 @@
   color: #61dafb;
 }
 
+div.Nav {
+  /* height: 136px; */
+}
+
+button.ui.button {
+  z-index: 1;
+}
+
+div.ui.vertical.menu {
+    width: 15rem;
+    height: 125px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    text-align: left;
+}
+
+div.ui.segment.pushable {
+  margin-bottom: 0;
+  margin-top: 0px;
+  background: #ffffff00;
+  border: none;
+  box-shadow: none;
+  z-index: 2;
+}
+
+div.ui.inverted.vertical.labeled.icon.ui.overlay.left.thin.visible.sidebar.menu {
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    background: black;
+}
+
+div.ui.basic.segment {
+    background: none transparent;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+}
+
+#ramen-form {
+  position: absolute;
+  top: 0;
+  padding: 1px;
+  width: 100%;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

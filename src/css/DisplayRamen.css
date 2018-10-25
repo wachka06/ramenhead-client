@@ -1,17 +1,13 @@
 .display-ramen {
-  background-color: #f7f2f2;
-  width: 45%;
-  margin-left: 550px;
-  top: 100px;
-  height: 100vh;
-  right: 100px;
-
+  background-color: #e9e6e6;
+  width: 51%;
+  height: 77vh;
   display: inline-block;
-  float: left; /* based on the parent component, position:abusolute change the position
-               /* position:static doesn't disturb any components, but position: absolute disturb other components based on top, right etc... */
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 0 10px;
+  float: right;
 }
 
 .img {

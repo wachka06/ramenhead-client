@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './css/App.css';
-
+import './css/index.css'
 import Nav from './components/Nav.js'
 import Homepage from './components/Homepage'
 import UserProfile from './components/UserProfile'
@@ -22,7 +22,9 @@ class App extends Component {
     sortByOpen: false,
     sortByDistance: "Bird's-eye View",
     user: {id: 15, name: "Amirata", email: "amirata@gmail.com"},
-    favorites: []
+    favorites: [],
+    reviews: []
+
   }
 
   componentDidMount = () => { //lifecycle
@@ -51,7 +53,17 @@ class App extends Component {
 
     fetch('http://localhost:3000/' + this.state.user.id + '/get_user_reviews')
     .then(res => res.json())
-    // .then(console.log)
+    .then(data => {
+      const userReviews = data.map((restaurantObj) => {
+        return {
+          contents: restaurantObj.contents,
+          rating: restaurantObj.rating,
+          name: restaurantObj.restaurant.name,
+          address: restaurantObj.restaurant.display_address
+        }
+      })
+      this.setState({reviews: userReviews})
+    })
   }
 
 
@@ -209,6 +221,7 @@ class App extends Component {
     // console.log(this.state.favorites)
     // const favoritesArray = this.handleFavorite()
     // console.log(favoritesArray)
+    console.log("reviews", this.state.reviews)
     return (
       <Router>
        <React.Fragment>
@@ -220,7 +233,7 @@ class App extends Component {
                   <Homepage handleInput={this.handleInput} searchWord={this.state.searchWord} searchArea={this.state.searchArea} handleChange={this.handleChange} handleRating={this.handleRating} sortByRating={this.state.sortByRating} handleOpen={this.handleOpen} sortByOpen={this.state.sortByOpen} handleDistance={this.handleDistance} sortByDistance={this.state.sortByDistance} ramens={this.handleRamens()} handleClick={this.handleClick} favorites={this.state.favorites} selectedRamen={this.state.selectedRamen} user={this.state.user} handleSave={this.handleSave}/> }/>
 
            <Route path="/rameniac/user_details" render={
-                            routerProps => <UserProfile favorites={this.state.favorites} /> }/>
+                            routerProps => <UserProfile favorites={this.state.favorites} reviews={this.state.reviews}/> }/>
 
         </div>
       </div>

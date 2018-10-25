@@ -7,16 +7,21 @@ class RamenList extends Component {
 
   render() {
     console.log("RamenList", this.props)
+    const showRamen = (
+      <div className="list-ramen-container">
+        <div className="list-ramen">
+        {
+          this.props.ramens.map((ramen) => {
+            return <Ramen key={ramen.id} ramen={ramen} handleClick={this.props.handleClick}/>
+          })
+        }
+        </div>
+      </div>
+    )
 
     return (
       <Fragment>
-        <div className="list-ramen">
-          {
-            this.props.ramens.map((ramen) => {
-              return <Ramen key={ramen.id} ramen={ramen} handleClick={this.props.handleClick}/>
-            })
-          }
-        </div>
+        {(this.props.ramens.length !== 0) ? showRamen : null}
       </Fragment>
     );
   }

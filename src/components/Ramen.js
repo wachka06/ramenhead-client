@@ -1,4 +1,5 @@
 import React from "react"
+import { Rating } from 'semantic-ui-react'
 
 const Ramen = (props) => {
   // console.log("Ramen", props.ramen)
@@ -11,10 +12,11 @@ const Ramen = (props) => {
     //   <td>{props.ramen.location.display_address.join('')}</td>
     // </tr>
     <div className="ramen" onClick={() => props.handleClick(props.ramen)}>
-      <span className="ramen-title"><h4>{props.ramen.name}</h4></span>
-      <span className="ramens">&nbsp;&nbsp;&nbsp;{props.ramen.rating}</span>
-      <span className="ramens">&nbsp;&nbsp;&nbsp;{props.ramen.price}</span>
-      <span className="ramens">&nbsp;&nbsp;&nbsp;{props.ramen.location.display_address.join('')}</span>
+      <br/>
+      <span className="ramen-title"><strong>{props.ramen.name}</strong></span>
+      <span className="ramens">&nbsp;&nbsp;&nbsp;<Rating defaultRating={props.ramen.rating} maxRating={5} disabled /></span>
+      <span className="ramens">&nbsp;&nbsp;&nbsp;{props.ramen.price}</span><br/>
+      <span className="ramens">&nbsp;&nbsp;&nbsp;{props.ramen.location.display_address.join('')}</span><br/><br/>
     </div>
   )
 }
