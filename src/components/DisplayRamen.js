@@ -2,7 +2,7 @@ import React from "react"
 import {Component, Fragment} from "react" // Fragment is like <div>, but doesn't break like.
 import '../css/DisplayRamen.css';
 import { Rating } from 'semantic-ui-react'
-import { Button, Form, Message } from 'semantic-ui-react'
+import { Button, Header, Modal, Form, Grid, Icon } from 'semantic-ui-react'
 
 const API_KEY = process.env.GOOGLE_API_KEY
 
@@ -10,7 +10,7 @@ class DisplayRamen extends Component {
 
 
   state = {
-
+    open: false,
     rating: '5',
     contents: '',
     isFavorite: false,
@@ -135,13 +135,27 @@ class DisplayRamen extends Component {
   }
 
   handleReviews = () => {
-    return this.state.reviews.map((review) => {
+    const review = this.state.reviews.map((review) => {
+      return (<div className="review"><span>{review.user.name}&nbsp;&nbsp;&nbsp;<Rating defaultRating={review.rating} maxRating={5} disabled /></span>
+      <p>{review.contents}</p></div>)
+    })
+
       return (
-        <div>
-          <span>{review.user.name}&nbsp;&nbsp;&nbsp;<Rating defaultRating={review.rating} maxRating={5} disabled /></span>
-          <p>{review.contents}</p>
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={this.handleClose}>&times;</span>
+            <h2>Reviews</h2>
+            {review}
+          </div>
         </div>
       )
+
+  }
+
+  handleClose = () => {
+    this.setState({
+      showForm: false,
+      showReviews: false
     })
   }
 
@@ -164,13 +178,13 @@ class DisplayRamen extends Component {
       if (this.props.selectedRamen.name) {
         return (
           <ul className="display-ramen">
-            <Button onClick={this.handleFavorite}>{this.state.isFavorite ? 'Unfavorite' : 'Favorite'}</Button>
+            <Button onClick={this.handleFavorite}>{this.state.isFavorite ? <Icon name='heart'/> : <Icon name='heart outline'/>}</Button>
 
           {/* {!this.props.handleFavorite.includes(this.props.selectedRamen.id) ?
             <button onClick={this.props.handleFavorite} onClick={() => this.props.handleSave(this.props.selectedRamen)}>Favorite</button>
             : <button onClick={this.props.handleFavorite} onClick={() => this.props.handleSave(this.props.selectedRamen)}>Unfavorite</button>} */}
           <p>{this.props.selectedRamen.image_url && <img src={this.props.selectedRamen.image_url} width="200" height="200" className="img" />}</p>
-          <h3>{this.props.selectedRamen.name}</h3>
+          <h1>{this.props.selectedRamen.name}</h1>
           <p><Rating defaultRating={this.props.selectedRamen.rating} maxRating={5} disabled /></p>
           <p>{this.props.selectedRamen.price}</p>
           <p>{this.props.selectedRamen.display_phone}</p>
@@ -184,13 +198,16 @@ class DisplayRamen extends Component {
            <Button onClick={this.handleReviewButton}>Write a Review</Button>
               { this.state.showForm ?
                 // console.log("hello")
-                  <div>
+                  <div className="modal">
+                    <div className="modal-content">
+                      <span className="close" onClick={this.handleClose}>&times;</span>
                       <Form onSubmit={this.handleSubmit}>
-                        <Form.Select label='Rating' options={options} name="type" onChange={this.handleChange} />
+                        <Form.Select label='Rating' options={options} name="type" onChange={this.handleChange} id="rating-label"/>
 
                         <Form.TextArea name="message" style={bryan} placeholder="Please leave your review of this ramen place here." onChange={this.handleChange}/>
                         <Form.Button type="submit">Submit</Form.Button>
                       </Form>
+                    </div>
                   </div>
                   : null // the form will be hidden
               }

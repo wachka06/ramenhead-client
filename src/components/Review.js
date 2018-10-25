@@ -9,8 +9,8 @@ class Review extends Component {
     return (
       <div>
         <br/><br/>
-        <p><strong>{this.props.review.name}</strong></p>
-        <p>{this.props.review.address}</p>
+        <span><strong>{this.props.review.name}</strong>
+        {this.props.review.address}</span>
         <p><Rating defaultRating={this.props.review.rating} maxRating={5} disabled /></p>
         <p>{this.props.review.contents}</p>
         <br/><br/>

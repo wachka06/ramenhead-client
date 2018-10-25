@@ -1,0 +1,35 @@
+#user-profile {
+  background: #f6f2f2;
+}
+
+#favorite-ramen-container {
+  width: 57%;
+  height: 600px;
+  overflow: scroll;
+  display: inline-block;
+  float: right;
+}
+
+.favorite-ramen {
+  height: 100%;
+  width: 100%;
+  margin-bottom: 45px;
+}
+
+.restaurant-details {
+  float: left;
+  margin-top: 18px;
+  margin-left: 20%;
+}
+
+.fav-img {
+  float: left;
+  margin-bottom: 0;
+}
+
+#review-container {
+  height: 600px;
+  width: 40%;
+  overflow: scroll;
+  display: inline-block;
+}

@@ -1,10 +1,10 @@
 .App {
   text-align: center;
-  background-color: pink;
+  background-color: red;
 }
 
 .background {
-  background-color: pink;
+  background-color: red;
 }
 
 .App-header {
@@ -23,7 +23,7 @@
 }
 
 div.Nav {
-  /* height: 136px; */
+  height: 144px;
 }
 
 button.ui.button {
@@ -66,6 +66,10 @@ div.ui.basic.segment {
   top: 0;
   padding: 1px;
   width: 100%;
+}
+
+.username {
+  font-size: 24px;
 }
 
 @keyframes App-logo-spin {
