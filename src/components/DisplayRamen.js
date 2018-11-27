@@ -72,6 +72,8 @@ class DisplayRamen extends Component {
         'Content-Type': 'application/json'
       }
     })
+
+    // this.setState(this.state)
   }
 
   handleFavorite = () => {
@@ -178,19 +180,19 @@ class DisplayRamen extends Component {
       if (this.props.selectedRamen.name) {
         return (
           <ul className="display-ramen">
-            <Button onClick={this.handleFavorite}>{this.state.isFavorite ? <Icon name='heart'/> : <Icon name='heart outline'/>}</Button>
+            <Button className="heart-button" onClick={this.handleFavorite}>{this.state.isFavorite ? <Icon name='heart'/> : <Icon name='heart outline'/>}</Button>
 
           {/* {!this.props.handleFavorite.includes(this.props.selectedRamen.id) ?
             <button onClick={this.props.handleFavorite} onClick={() => this.props.handleSave(this.props.selectedRamen)}>Favorite</button>
             : <button onClick={this.props.handleFavorite} onClick={() => this.props.handleSave(this.props.selectedRamen)}>Unfavorite</button>} */}
-          <p>{this.props.selectedRamen.image_url && <img src={this.props.selectedRamen.image_url} width="200" height="200" className="img" />}</p>
+          <p>{this.props.selectedRamen.image_url && <img src={this.props.selectedRamen.image_url} width="180" height="180" className="img" />}</p>
           <h1>{this.props.selectedRamen.name}</h1>
           <p><Rating defaultRating={this.props.selectedRamen.rating} maxRating={5} disabled /></p>
           <p>{this.props.selectedRamen.price}</p>
           <p>{this.props.selectedRamen.display_phone}</p>
           <p>{this.props.selectedRamen.location && this.props.selectedRamen.location.display_address.join('')}</p>
           {/* When the component is loaded, location is not loaded yet(undefined), so it is same as  undefined.display_address, and give you error message */}
-          <p>{this.props.selectedRamen.coordinates && <img src={`https://maps.googleapis.com/maps/api/staticmap?markers=${this.props.selectedRamen.coordinates.latitude},${this.props.selectedRamen.coordinates.longitude}&size=400x300&key=AIzaSyAlWrQ2qEXCygx2hpEqzYNMapDFwyZ5S8c`} />}</p>
+          <p>{this.props.selectedRamen.coordinates && <img src={`https://maps.googleapis.com/maps/api/staticmap?markers=${this.props.selectedRamen.coordinates.latitude},${this.props.selectedRamen.coordinates.longitude}&size=400x300&key=${keys.key}`} />}</p>
 
           <Button onClick={this.handleAllReviewButton}>Read All Reviews</Button>
             {this.state.showReviews ? this.handleReviews() : null}

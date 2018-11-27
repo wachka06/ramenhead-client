@@ -33,3 +33,9 @@
   overflow: scroll;
   display: inline-block;
 }
+
+.heart-button {
+  float: right;
+  margin-right: 10px;
+  margin-top: 10px;
+}
