@@ -4,7 +4,6 @@ import '../css/DisplayRamen.css';
 import { Rating } from 'semantic-ui-react'
 import { Button, Header, Modal, Form, Grid, Icon } from 'semantic-ui-react'
 
-const API_KEY = process.env.GOOGLE_API_KEY
 
 class DisplayRamen extends Component {
 
@@ -73,7 +72,7 @@ class DisplayRamen extends Component {
       }
     })
 
-    // this.setState(this.state)
+    this.setState(this.state)
   }
 
   handleFavorite = () => {
@@ -192,7 +191,7 @@ class DisplayRamen extends Component {
           <p>{this.props.selectedRamen.display_phone}</p>
           <p>{this.props.selectedRamen.location && this.props.selectedRamen.location.display_address.join('')}</p>
           {/* When the component is loaded, location is not loaded yet(undefined), so it is same as  undefined.display_address, and give you error message */}
-          <p>{this.props.selectedRamen.coordinates && <img src={`https://maps.googleapis.com/maps/api/staticmap?markers=${this.props.selectedRamen.coordinates.latitude},${this.props.selectedRamen.coordinates.longitude}&size=400x300&key=${keys.key}`} />}</p>
+          <p>{this.props.selectedRamen.coordinates && <img src={`https://maps.googleapis.com/maps/api/staticmap?markers=${this.props.selectedRamen.coordinates.latitude},${this.props.selectedRamen.coordinates.longitude}&size=400x300&key="AIzaSyAlWrQ2qEXCygx2hpEqzYNMapDFwyZ5S8c"`} />}</p>
 
           <Button onClick={this.handleAllReviewButton}>Read All Reviews</Button>
             {this.state.showReviews ? this.handleReviews() : null}
