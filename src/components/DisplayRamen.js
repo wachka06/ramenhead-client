@@ -17,7 +17,7 @@ class DisplayRamen extends Component {
     showReviews: false,
     reviews: []
   }
-
+// replace https://rameniac-api.herokuapp.com/
   componentDidUpdate = (prevProps) => {
     console.log("RAMEN", prevProps);
     if(this.props.selectedRamen.id !== prevProps.selectedRamen.id) {
