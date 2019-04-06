@@ -33,7 +33,7 @@ class App extends Component {
     maniac.play()
 
     // console.log("state", this.state.user.id)
-    fetch('http://localhost:3000/' + this.state.user.id + '/get_favorites')
+    fetch('https://rameniac-server.herokuapp.com/' + this.state.user.id + '/get_favorites')
     .then(res => res.json())
     .then(faves => {
       faves.map((restaurantObj) => {
@@ -55,7 +55,7 @@ class App extends Component {
     })
 
 
-    fetch('http://localhost:3000/' + this.state.user.id + '/get_user_reviews')
+    fetch('https://rameniac-server.herokuapp.com/' + this.state.user.id + '/get_user_reviews')
     .then(res => res.json())
     .then(data => {
       const userReviews = data.map((restaurantObj) => {
@@ -74,7 +74,7 @@ class App extends Component {
 
   handleSave = (ramenObj) => {
     console.log("RAMEN", ramenObj);
-    fetch('http://localhost:3000/add_favorite', { //send request to backendside server !
+    fetch('https://rameniac-server.herokuapp.com/add_favorite', { //send request to backendside server !
       method: 'POST',
       body: JSON.stringify({restaurant: {...ramenObj}, user_id: 18}),
       headers:{
@@ -163,7 +163,7 @@ class App extends Component {
   handleChange = (event) => {
     event.preventDefault();
 
-    fetch(`http://localhost:3000/rameniac/`, { // if it's 'GET' request, `http://localhost:3000/ramenhead?term=${this.state.searchWord}&location=${this.state.searchArea}&categories=ramen`, and you don't need to put body: JSON.stringify({term:this.state.searchWord, location:this.state.searchArea}), but url will be longer
+    fetch(`https://rameniac-server.herokuapp.com/rameniac/`, { // if it's 'GET' request, `http://localhost:3000/ramenhead?term=${this.state.searchWord}&location=${this.state.searchArea}&categories=ramen`, and you don't need to put body: JSON.stringify({term:this.state.searchWord, location:this.state.searchArea}), but url will be longer
       method: 'POST',
       body: JSON.stringify({term:this.state.searchWord, location:this.state.searchArea}), //location is required for Yelp API call
       headers:{
