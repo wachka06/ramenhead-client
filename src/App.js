@@ -33,7 +33,7 @@ class App extends Component {
     maniac.play()
 
     // console.log("state", this.state.user.id)
-    fetch('https://rameniac-server.herokuapp.com/' + this.state.user.id + '/get_favorites')
+    fetch('https://rameniac-server.herokuapp.com/' + this.state.user.id + '/get_favorites' , {'mode': 'no-cors'})
     .then(res => res.json())
     .then(faves => {
       faves.map((restaurantObj) => {
