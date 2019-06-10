@@ -19,8 +19,6 @@ class Favorites extends Component {
               <p>{this.props.restaurant.display_address && this.props.restaurant.display_address}</p>
             </div>
             {/* When the component is loaded, location is not loaded yet(undefined), so it is same as  undefined.display_address, and give you error message */}
-            {/*<p>{this.props.restaurant && <img src={`https://maps.googleapis.com/maps/api/staticmap?markers=${this.props.restaurant.latitude},${this.props.restaurant.longitude}&size=400x300&key=AIzaSyAlWrQ2qEXCygx2hpEqzYNMapDFwyZ5S8c`} />}</p>*/}
-          </div>
        )
       }
   }
