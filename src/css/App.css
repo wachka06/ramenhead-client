@@ -5,6 +5,7 @@
 
 .background {
   background-color: red;
+  height: 160px;
 }
 
 .App-header {
@@ -64,19 +65,14 @@ div.ui.basic.segment {
 #ramen-form {
   position: absolute;
   top: 0;
-  padding: 1px;
   width: 100%;
 }
 
-.username {
-  font-size: 24px;
+.wrap-main {
+  
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+label:before {
+  margin-top: 4px;
+  margin-left: -2px;
 }

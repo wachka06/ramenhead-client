@@ -6,7 +6,7 @@ import '../css/RamenList.css';
 class RamenList extends Component {
 
   render() {
-    console.log("RamenList", this.props)
+    // console.log("RamenList", this.props)
     const showRamen = (
       <div className="list-ramen-container">
         <div className="list-ramen">

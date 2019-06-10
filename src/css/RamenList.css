@@ -1,5 +1,6 @@
 .list-ramen-container {
   width: 38%;
+  min-width: 400px;
   height: 600px;
   overflow: scroll;
   display: inline-block;
@@ -10,11 +11,6 @@
   left: 20px;
 }
 
-.ramen {
-  /* display: inline; */
-
-}
-
 .ramen-title {
   font-size: 20px;
   font-style: strong;
@@ -23,7 +19,3 @@
 .ramens {
   font-size: 16px;
 }
-
-/* .shop-title {
-  margin-bottom: -10px;
-} */

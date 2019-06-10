@@ -16,7 +16,7 @@ const Ramen = (props) => {
       <span className="ramen-title"><strong>{props.ramen.name}</strong></span>
       <span className="ramens">&nbsp;&nbsp;&nbsp;<Rating defaultRating={props.ramen.rating} maxRating={5} disabled /></span>
       <span className="ramens">&nbsp;&nbsp;&nbsp;{props.ramen.price}</span><br/>
-      <span className="ramens">&nbsp;&nbsp;&nbsp;{props.ramen.location.display_address.join('')}</span><br/><br/>
+      <span className="ramens">&nbsp;&nbsp;&nbsp;{props.ramen.location.display_address.join(', ')}</span><br/><br/>
     </div>
   )
 }

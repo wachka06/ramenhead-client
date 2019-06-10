@@ -1,19 +1,25 @@
-.logo {
-  font-size: 55px;
+.ramen-logo {
   font-family: 'Monoton', cursive;
   font-family: 'Lobster', cursive;
+  font-size: 55px;
   color: white;
+  display: block;
+  margin: 30px;
 }
 
 .ramen-form {
   background-color: red;
   font-size: 16px;
-  width: 903px;
-  margin: 0 150px;
+  width: 100%;
   display: inline-block;
 }
 
-.sortby {
+.ramen-filter {
   font-size: 14px;
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.box {
+  margin-left: 10px;
 }

@@ -25,20 +25,26 @@ class UserProfile extends Component {
     // const name = nameArray.uniq
     // console.log("name", nameArray)
     return (
-      <div id="user-profile">
+      <div>
         <span className="username">&nbsp;&nbsp;&nbsp;<strong>Username:</strong>&nbsp;&nbsp;&nbsp;{this.handleUser()}</span>
-        <br/>
-        <h4>My Favorites</h4>
-        <div id="favorite-ramen-container">
-          {restaurants.map((obj) => {
-            return <Favorites restaurant={obj}/>
-          })}
-        </div>
-        <h4>My Reviews</h4>
-        <div id="review-container">
-          {this.props.reviews.map((obj) => {
-            return <Review review={obj}/>
-          })}
+        <div id="wrap-user-profile">
+          <div className="wrap-review-container">
+            <h3>My Reviews</h3>
+            <div id="review-container">
+              {this.props.reviews.map((review, index) => {
+                // console.log("REVIEW", review, index)
+                return <Review review={review} key={index}/>
+              })}
+            </div>
+          </div>
+          <div className="wrap-favorite-ramen-container">
+            <h3>My Favorites</h3>
+            <div id="favorite-ramen-container">
+              {restaurants.map((restaurant) => {
+                return <Favorites key={restaurant.id} restaurant={restaurant}/>
+              })}
+            </div>
+          </div>
         </div>
       </div>
     );

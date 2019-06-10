@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { NavLink } from 'react-router-dom';
-import { Button, Header, Icon, Image, Menu, Segment, Sidebar } from 'semantic-ui-react'
+import { Button, Header, Icon, Menu, Segment, Sidebar } from 'semantic-ui-react'
 
 class Nav extends Component {
   state = { visible: false }
@@ -34,14 +34,14 @@ class Nav extends Component {
             >
 
             <NavLink className="item" to="/rameniac/" exact>
-            <Menu.Item as='a'>
+            <Menu.Item>
               <Icon name='home' />
                   Home
             </Menu.Item>
             </NavLink>
 
             <NavLink className="item" to="/rameniac/user_details/">
-            <Menu.Item as='a'>
+            <Menu.Item>
               <Icon name='user' />
               Your Profile
             </Menu.Item>

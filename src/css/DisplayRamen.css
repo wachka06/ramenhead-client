@@ -1,18 +1,49 @@
-.display-ramen {
+.display-ramen-container {
   background-color: #e9e6e6;
-  width: 51%;
-  height: 77vh;
+  width: 40%;
+  height: 600px;
   display: inline-block;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 10px;
+  margin: 0 80px 0 0px;
+  padding: 0;
+  min-width: 460px;
   float: right;
+}
+
+button.ui.button.heart-button {
+  float: right;
+  z-index: 1;
+  margin-top: 4px;
+  margin-right: 6px;
+}
+
+i.icon.heart:before {
+    margin-left: 5px;
+    content: "\F004";
+}
+
+.wrap-display-ramen {
+  margin-left: 12%;
+  margin-right: 12%;
+  margin-top: 20px;
 }
 
 .img {
   float: left;
-  margin-top: 10px;
+  margin: 10px;
+}
+
+.wrap-display-ramen-details {
+  padding-top: 20px;
+}
+
+.map-img {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 1%;
+  margin-top: 2%;
 }
 
 .modal {
@@ -30,6 +61,8 @@
 }
 
 .modal-content {
+  height: 300px;
+  overflow: scroll;
   position: fixed;
   bottom: 0;
   background: #f5f5f5;
@@ -40,32 +73,48 @@
 }
 
 .review {
-  margin: 22px 0;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 3%;
+}
+
+.review-username {
+  font-size: 16px;
 }
 
 .modal form {
-  width: 95%;
-  margin-left: 27px;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.ui.form {
+  font-size: 1rem;
 }
 
 #rating-label {
   font-size: 20px;
 }
 
-/* .modal.ui.form.field>label {
-  font-size: 18px;
-} */
-
-.close {
-  position: absolute;
-  right: 0;
-  top: 0;
+.close-button {
+  position: fixed;
+  right: 2%;
+  bottom: 34%;
   font-size: 36px;
   margin: 5px;
   font-weight: 900;
 }
 
-.close:hover {
+.close-button:hover {
   cursor: pointer;
   color: red;
+}
+
+.no-reviews {
+  margin: 0px;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.button-wrap {
+  margin-top: 1%;
 }
