@@ -1,5 +1,4 @@
-import React from "react"
-import {Fragment} from "react" // Fragment is like <div>, but doesn't break like.
+import React, {Fragment} from "react"
 import '../css/RamenForm.css';
 import { Input, Button, Icon, Checkbox} from 'semantic-ui-react'
 
@@ -7,6 +6,7 @@ const RamenForm = (props) => {
   const buttonStyle = {
     width: '300px'
   }
+
   return(
     <Fragment>
       <strong className="ramen-logo">Rameniac</strong>
@@ -31,11 +31,13 @@ const RamenForm = (props) => {
             <option value="Within 4 blocks">Within 4 blocks</option>
           </select>
           <label>
-            <Checkbox className="box" input="true" type="checkbox" value="Highest Rated" checked={props.sortByRating} onChange={props.handleRating}/>
+          <Checkbox className="box" input="true" type="checkbox" value="Highest Rated"
+            checked={props.sortByRating} onChange={props.handleRating}/>
             Highest Rated
           </label>
           <label>
-            <Checkbox className="box" input="true" type="checkbox" value="isOpen" checked={props.sortByOpen} onChange={props.handleOpen}/>
+          <Checkbox className="box" input="true" type="checkbox" value="isOpen"
+            checked={props.sortByOpen} onChange={props.handleOpen}/>
             Open Now
           </label>
         </div>

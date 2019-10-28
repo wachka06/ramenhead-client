@@ -1,0 +1,8 @@
+.ramen-wrap {
+  padding: 1.2rem 1rem;
+}
+
+.ramen-wrap div:nth-child(1) {
+  font-weight: bold;
+  font-size: 1.2rem;
+}

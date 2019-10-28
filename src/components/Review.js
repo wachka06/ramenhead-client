@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { Rating } from 'semantic-ui-react'
 
 class Review extends Component {
-
   render() {
-    // console.log("PROPS", this.props)
     return (
       <div className="ramen-review">
         <h3 className="ramen-review-name">{this.props.review.name}</h3>

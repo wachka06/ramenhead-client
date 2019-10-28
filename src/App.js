@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import './css/App.css';
-import './css/index.css'
 import Nav from './components/Nav.js'
 import Homepage from './components/Homepage'
 import UserProfile from './components/UserProfile'
-
-import {
-  BrowserRouter as Router,
-  Route
-} from 'react-router-dom'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 class App extends Component {
 
@@ -27,15 +22,8 @@ class App extends Component {
 
   }
 
-  componentDidMount = () => { //lifecycle
-
-    // let maniac = new Audio('http://www.oodesk.com/share/getfile.php?_ooshare=CVK8TRJlpdky01m93Z6ny7GBp31B%2BlWcGWRsD3aTLEd%2B0pYoTtzeygcmfZITJDeIfEOvWHdEjDDCp27zDecLjyJy5EbBPSNAFDQgt4D8CpqW3PaZ5wlKARc7gvW6bFu9G7u8va%2BN6%2BEjk0ePXjAfK9qt80GQzPquVVbSz916HMpz%2FB%2Bn%2Buxy7sfSdUSYPbRJw528w2RGZqBvtXu0JERon%2FuYLthf3NVjHLvq0TaUts8%2FXsV3bhkHvmY5isWycn1udLgYxIJUCFGddfTp0UfeUC2gUn8hWTNymjrZgzK%2FCoFqUwvwpUcbu8JYtFYeIsWw3936utNI65BeeNVQ5EM58w%3D%3D&action=open')
-    // maniac.play()
-
-
-    // console.log("state", this.state.user.id)
+  componentDidMount = () => {
     fetch('http://localhost:3000/' + this.state.user.id + '/get_favorites')
-        // fetch('http://localhost:3000/' + this.state.user.id + '/get_favorites' , {'mode': 'no-cors'})
     .then(res => res.json())
     .then(faves => {
       faves.map((restaurantObj) => {
@@ -56,7 +44,6 @@ class App extends Component {
       })
     })
 
-
     fetch('http://localhost:3000/' + this.state.user.id + '/get_user_reviews')
     .then(res => res.json())
     .then(data => {
@@ -72,48 +59,15 @@ class App extends Component {
     })
   }
 
-
-
   handleSave = (ramenObj) => {
-    // console.log("OBJ",ramenObj)
-    // console.log("RAMEN", ramenObj);
-    fetch('http://localhost:3000/add_favorite', { //send request to backendside server !
+    fetch('http://localhost:3000/add_favorite', {
       method: 'POST',
       body: JSON.stringify({restaurant: {...ramenObj}, user_id: 41}),
       headers:{
         'Content-Type': 'application/json'
       }
     })
-
   }
-
-
-
-  // componentDidMount(){
-  //   fetch(`http://localhost:3000/ramenhead/`, { // if it's 'GET' request, `http://localhost:3000/ramenhead?term=${this.state.searchWord}&location=${this.state.searchArea}&categories=ramen`, and you don't need to put body: JSON.stringify({term:this.state.searchWord, location:this.state.searchArea}), but url will be longer
-  //     method: 'POST',
-  //     body: JSON.stringify({term:this.state.searchWord, location:this.state.searchArea}),
-  //     headers:{
-  //       'Content-Type': 'application/json'
-  //     }
-  //     })
-  //     .then(res => res.json())
-  //     .then(data =>
-  //       this.setState({ramens:data.businesses})
-  //     )
-  // }
-
-
-  // handleRamens = () => {
-  //   let tempRamens = [...this.state.ramens]
-  //
-  //   if(this.state.searchWord && this.state.searchArea) {
-  //     tempRamens = this.state.ramens.filter((ramen) =>
-  //       ramen.name.toLowerCase().includes(this.state.searchWord) || ramen.ticker.toLowerCase().includes(this.state.searchWord)
-  //     )
-  //   }
-  //   return tempRamens
-  // }
 
   handleRamens = () => {
       let filteredRamenArray = [...this.state.ramens];
@@ -145,12 +99,10 @@ class App extends Component {
             return obj.is_closed === false
           })
         }
-
       return filteredRamenArray
     }
 
   handleInput = (event) => {
-    // console.log(event.target.name)
     if (event.target.name === "searchWord"){
         this.setState({searchWord: event.target.value.toLowerCase()})
     } else if (event.target.name === "searchArea"){
@@ -162,58 +114,22 @@ class App extends Component {
     this.setState({selectedRamen: ramenObj})
   }
 
-
   handleChange = (event) => {
     event.preventDefault();
 
-    fetch(`http://localhost:3000/rameniac/`, { // if it's 'GET' request, `http://localhost:3000/ramenhead?term=${this.state.searchWord}&location=${this.state.searchArea}&categories=ramen`, and you don't need to put body: JSON.stringify({term:this.state.searchWord, location:this.state.searchArea}), but url will be longer
+    fetch(`http://localhost:3000/rameniac/`, {
       method: 'POST',
-      body: JSON.stringify({term:this.state.searchWord, location:this.state.searchArea}), //location is required for Yelp API call
+      body: JSON.stringify({term:this.state.searchWord, location:this.state.searchArea}),
       headers:{
         'Content-Type': 'application/json'
       }
       })
       .then(res => res.json())
       .then(data => this.setState({ramens: data.businesses}))
-        // this.setState(() => {
-        //   let filteredRamenArray = data.businesses;
-        //   if (this.state.sortByRating === "Highest Rated") {
-        //      filteredRamenArray = filteredRamenArray.sort(function(obj1, obj2) {
-        //        return obj2.rating - obj1.rating
-        //      })
-        //    } else if (this.state.sortByOpen === "isOpen") {
-        //       filteredRamenArray = filteredRamenArray.filter(obj => {
-        //         return obj.is_closed === false
-        //       })
-        //     }
-        //     // else if (this.state.sortByDistance === "Driving") {
-        //     //   filteredRamenArray = filteredRamenArray.filter(obj => {
-        //     //     return obj.is_closed === false
-        //     //   })
-        //     // }
-        //
-        //   return {ramens: filteredRamenArray}
-        // }
   }
 
-  // handleChange = (event) => {
-  //     event.preventDefault();
-  //     fetch(`http://localhost:3000/ramenhead/`, { // if it's 'GET' request, `http://localhost:3000/ramenhead?term=${this.state.searchWord}&location=${this.state.searchArea}&categories=ramen`, and you don't need to put body: JSON.stringify({term:this.state.searchWord, location:this.state.searchArea}), but url will be longer
-  //       method: 'POST',
-  //       body: JSON.stringify({term:this.state.searchWord, location:this.state.searchArea}), //location is required for Yelp API call
-  //       headers:{
-  //         'Content-Type': 'application/json'
-  //       }
-  //       })
-  //       .then(res => res.json())
-  //       .then(data =>
-  //         this.setState({ramens:data.businesses})
-  //       )
-  // }
-
-  handleRating = (event) => { // if the User can unclick the Rating, use checkbox instead of radiobutton!
-    // console.log("checked:", event.target.checked)
-    this.setState({sortByRating: event.target.checked}) // event.target.checked gives you boolean.
+  handleRating = (event) => {
+    this.setState({sortByRating: event.target.checked})
   }
 
   handleOpen = (event) => {
@@ -221,22 +137,16 @@ class App extends Component {
   }
 
   handleDistance = (event) => {
-    // console.log("EVENT", event.target.value)
     this.setState({sortByDistance: event.target.value})
   }
 
   render() {
-    // console.log("APP", this.handleFavorite())
-    // console.log(this.state.favorites)
-    // const favoritesArray = this.handleFavorite()
-    // console.log(favoritesArray)
-    // console.log("reviews", this.state.reviews)
     return (
       <Router>
        <React.Fragment>
         <div className="App">
           <div className="background">
-            <Nav/>
+            <Nav />
             <Route exact path="/rameniac"
               render={
                 routerProps =>

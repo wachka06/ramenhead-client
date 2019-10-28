@@ -9,7 +9,7 @@ class Nav extends Component {
   handleShowClick = () => this.setState({ visible: true })
   handleSidebarHide = () => this.setState({ visible: false })
 
-  render(){
+  render() {
     const {children} = this.props
     const { visible } = this.state
     return (
