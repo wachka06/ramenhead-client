@@ -1,6 +1,6 @@
-##Rameniac  
+## Rameniac  
 
 
-###Project setup  
+### Project setup  
 npm install  
 npm start  
